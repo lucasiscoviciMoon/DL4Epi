@@ -37,8 +37,8 @@ def evaluate(loader, data, model, evaluateL2, evaluateL1, batch_size):
             test = torch.cat((test, Y.cpu()));
 
         scale = loader.scale.expand(output.size(0), loader.m)
-        total_loss += evaluateL2(output * scale , Y * scale ).data[0]
-        total_loss_l1 += evaluateL1(output * scale , Y * scale ).data[0]
+        total_loss += evaluateL2(output * scale , Y * scale ).data
+        total_loss_l1 += evaluateL1(output * scale , Y * scale ).data
         n_samples += (output.size(0) * loader.m);
 
     rse = math.sqrt(total_loss / n_samples)/loader.rse
